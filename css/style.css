@@ -1,0 +1,125 @@
+@font-face { font-family: Roboto; src: url(Roboto.ttf); }
+@font-face { font-family: Days; src: url(Days.otf); }
+
+body
+{
+	background-image:url(http://365psd.ru/images/backgrounds/exclusive_paper.png);
+	font: 20px Georgia, serif, sans-serif;
+	color: #444444;
+	line-height: 1;
+	-webkit-text-size-adjust: none;
+	position: absolute;
+    top: 0px;
+	right: 15px;
+	bottom: 8px;
+    left: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.main
+{	
+	box-shadow: 2px 0 rgba(0,0,0,0.1), -2px 0 rgba(0,0,0,0.1), 4px 0 rgba(0,0,0,0.1), -4px 0 rgba(0,0,0,0.1), 6px 0 rgba(0,0,0,0.1), -6px 0 rgba(0,0,0,0.1);
+	max-width: 750px !important;
+	margin: auto;
+	padding: 5px 4% 4% 4%;
+}
+
+.first-letter {
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-size: 150%;
+  font-weight: bold;
+}
+
+/* Изображения */
+img 
+{
+	position: relative;
+    max-width:100% !important;
+    height: auto;
+    display: block;
+}
+img:before {
+	width: 5000px; 
+	height: 500px;
+	margin: auto;
+	display: block; 
+	backgrond-color: black;
+	z-index: 1;
+}
+
+
+/*  Оформление скролла */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+	background: #b8b8a2;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: #6f6f61; 
+}
+
+
+
+/*  ОФОРМЛЕНИЕ ТЕГОВ */
+
+
+/*  <hr/> */
+hr {width: 90%; height: 0; opacity: 0.7; border-top: 1px solid  #9b9b9b; border-bottom:1px solid   #F4F4F4;}
+
+/*  Позицирование элементов */
+img[style="text-align: center;"] {margin:auto;}
+img[style="text-align: right;"] {float: right;}
+
+/*  Выделение маркером */
+font[color="#FBFFFF"] 
+{ 
+  color: #4A361C;
+  text-decoration: none;
+  line-height: 1.5;
+  background: #d4b68f;
+  padding: 3px;
+  border-radius:  4px 4px;
+} 
+
+/*  Размер текста */
+font[size="1"] {font:35px Days; line-height: 1;}
+font[size="2"] {font:30px Georgia; line-height: 1;}
+font[size="3"] {font:25px Georgia; line-height: 1;}
+font[size="4"] {font:20px Georgia; line-height: 1;}
+font[size="5"] {font:15px Georgia; line-height: 1;}
+font[size="6"] {font:10px Georgia; line-height: 1;}
+
+/* Оформление ссылок */
+#content a {text-decoration: none; color: #4682B4; font-weight: bold; transition: 0.6s;}
+#content a:hover {color: #23415a;  transition: 0.6s;}
+
+/* Оформление цитат */
+blockquote
+{
+	width: 75%;
+    position: relative;
+	padding: 15px 20px 15px 50px;
+	margin: 20px auto;
+    box-shadow: 0.0em 0.2em 5px rgba(122,122,122,0.5);
+	background: #f3f3f3;
+	border: 1px solid #dfdfdf;
+	border-left: 6px solid grey;
+	font: small-caps 12pt Verdana, serif, sans-serif;
+	
+}
+blockquote:before 
+{
+    display: block;
+    content: url('lenta.png');
+	font: 80px Georgia, serif;
+    position: absolute;
+    left: 2px;
+    top: -10px;
+    color: #3d3d3d;
+}

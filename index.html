@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="Valdemarus" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mb.browser.min.js"></script>
+		<script type="text/javascript" src="js/FileSaver.js"></script>
+		<title>Simple Editor</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="css/editor.css" />
+	</head>
+	<body>
+	
+<div id="overlay"></div>
+<div id="movediv"></div>
+
+<div class="main_editor">
+	<center><h1 id="tit">HTML  редактор <b id="blink_text">|</b></h1><hr id="hr1"></center><br><br>
+<div class="floating">
+	<div class="icon">
+		<a id="bold" href="##"><div  class="bold" data-title="Выделить жирным"></div></a>
+		<a id="italic" href="##"><div class="italic" data-title="Выделить курсивом"></div></a>
+		<a id="underline" href="##"><div class="underline" data-title="Подчеркнутый текст"></div></a>
+		<a id="strike" href="##"><div class="strike" data-title="Зачеркнутый текст"></div></a>
+		<a id="textcolor" href="##"><div class="textcolor" data-title="Вставить Буквицу"></div></a>
+		<a id="justifyleft" href="##"><div class="justifyleft" data-title="Выравнивание по левому краю"></div></a>
+		<a id="justifycenter" href="##"><div class="justifycenter" data-title="Выравнивание по центру"></div></a>
+		<a id="justifyright" href="##"><div class="justifyright" data-title="Выравнивание по правому краю"></div></a>
+		<a id="bulletedlist" href="##"><div class="bulletedlist" data-title="Маркированный список"></div></a>
+		<a id="horizontalrule" href="##"><div class="horizontalrule" data-title="Вставить разделение"></div></a>
+		<a id="bgcolor" href="##"><div class="bgcolor" data-title="Выделить маркером"></div></a>
+		<a id="link" href="##"><div class="link" data-title="Вставить ссылку"></div></a>
+		<a id="unlink" href="##"><div class="unlink" data-title="Удалить ссылку"></div></a>
+		<a id="image" href="##"><div class="image" data-title="Вставить изображение"></div></a>
+		<a id="blockquote" href="##"><div class="blockquote" data-title="Вставить цитату"></div></a>
+		<a id="removeformat" href="##"><div class="removeformat" data-title="Удалить форматирование"></div></a>
+		<a id="undo" href="##"><div class="undo" data-title="Отменить действие"></div></a>
+		<a id="redo" href="##"><div class="redo" data-title="Вернуть действие"></div></a>
+		<select class="textsize">
+			<option id="h1">Заголовок 1</option>
+			<option id="h2">Заголовок 2</option>
+			<option id="h3">Заголовок 3</option>
+			<option id="h4">Заголовок 4</option>
+			<option id="h5">Заголовок 5</option>
+			<option id="h6">Заголовок 6</option>
+		</select>
+	</div>
+</div>
+
+<div id="content" contenteditable="true" ></div>
+<br><div id="tooltip">Сгенерировать файл</div>
+<textarea placeholder="HTML CODE" cols="30"></textarea>
+
+
+	<script type="text/javascript">
+	// Анимация
+	var title;
+	$('.main_editor').fadeTo(0,0);
+	$(window).load(function () {
+		$('.main_editor').fadeTo(1400,1);
+		$('#movediv').slideUp(1400);
+		
+		function functiontitle() {
+			$('#overlay').toggleClass('overlay');
+			var titletxt = prompt('Введите заголовок документа: <title>...</title>', '');
+			if (!titletxt || titletxt == '') { title = '...'; $('#overlay').toggleClass('overlay');}
+			else { title = titletxt.replace(/[^a-zA-ZА-Яа-я0-9\s]/g, ''); $('#overlay').toggleClass('overlay');}
+		}
+		// Проверка браузера
+		if (jQuery.browser.chrome) { setTimeout(functiontitle, 1500)}
+		else {
+			$('#content').focus();
+			document.execCommand("insertHTML", false, "<br> <img src='css/lock.png' style='text-align: center;'><br><div style='text-align: center;'><font size='5'><span class='first-letter'>К</span> сожалению, редактор адаптирован только под <i>Google Ghrome</i>.<br>Ваш браузер может некорректно работать с некоторыми функциями.</font><br>​<br>​<font color='#fbffff' size='5'>дважды кликните, чтобы разблокировать поле</font></div><br> ");
+			$('#content').attr('contenteditable', 'false'); $('#content').css('background','lightgrey');
+			$('#content').on('dblclick', function() {if ($('div').is('#content[contenteditable=false]')) {$('#content').css('background','none'); $('#content').attr('contenteditable', 'true'); $('#content').empty(); setTimeout(functiontitle, 200)}});
+		}
+	});
+
+	
+	// Мигание
+	var blink_text = true;
+	setInterval(function() {
+		if(blink_text){blink_text = false; $('#blink_text').animate({ "opacity": 0}, 1000);}
+		if(!(blink_text)){blink_text = true; $('#blink_text').animate({ "opacity": 1}, 1000);}
+	}, 1000);
+	// Плавающий блок
+	$(function(){
+		var topPos = $('.floating').offset().top;
+		$(window).scroll(function() { 
+			var top = $(document).scrollTop();
+			if (top+200 > topPos) $('.floating').addClass('fixed');
+			else $('.floating').removeClass('fixed');
+		});
+	});
+	
+	
+	// .::BUTTONS::.
+	
+	// Выделить жирным
+	$( '#bold' ).on( 'mousedown', function() {
+	   document.execCommand('bold'); 
+	});
+	// Выделить курсивом
+	$( '#italic' ).on( 'mousedown', function() {
+	   document.execCommand('italic'); 
+	});
+	// Подчеркнутый текст
+	$( '#underline' ).on( 'mousedown', function() {
+	   document.execCommand('underline'); 
+	});
+	// Зачеркнутый текст
+	$( '#strike' ).on( 'mousedown', function() {
+	   document.execCommand('strikethrough'); 
+	});
+	// Вставить Буквицу
+	$( '#textcolor' ).on( 'mousedown', function() {
+		var str = $('#content').html();
+	    str = str.replace(
+			  /(\<br\/?\>\s*(\<\w[^\<]*\>\s*)*)([A-ZА-ЯЁ])/g,
+			  function( a, pred, b, bukva ) {
+				if( pred.indexOf( 'first-letter' ) > -1 ) return a;
+				return pred + '<span class="first-letter">' + bukva + '</span>';
+		});
+		$('#content').html(str);
+	});
+	// Выравнивание по левому краю
+	$( '#justifyleft' ).on( 'mousedown', function() {
+	   document.execCommand('justifyleft'); 
+	});
+	// Выравнивание по центру
+	$( '#justifycenter' ).on( 'mousedown', function() {
+	   document.execCommand('justifycenter'); 
+	});
+	// Выравнивание по правому краю
+	$( '#justifyright' ).on( 'mousedown', function() {
+	   document.execCommand('justifyright'); 
+	});
+	// Маркированный список
+	$( '#bulletedlist' ).on( 'mousedown', function() {
+	   document.execCommand('InsertUnorderedList'); 
+	});
+	// Вставить разделение
+	$( '#horizontalrule' ).on( 'mousedown', function() {
+	   document.execCommand('insertHorizontalRule'); 
+	   document.execCommand('insertHTML', false, '\u200a');
+	});
+	// Выделить маркером
+	$( '#bgcolor' ).on( 'mousedown', function() {
+	   document.execCommand('forecolor', false, '#FBFFFF'); 
+	});
+	// Вставить ссылку
+	$( '#link' ).on( 'mousedown', function() {
+		$('#overlay').toggleClass('overlay');
+		var url = prompt('Введите URL:', 'http://');
+		if (!url || url == '') { url = '#'; $('#overlay').toggleClass('overlay');}
+		else { $('#overlay').toggleClass('overlay'); document.execCommand('CreateLink', null, url); }
+	});
+	// Удалить ссылку
+	$( '#unlink' ).on( 'mousedown', function() {
+	   document.execCommand('unlink');
+	});
+	// Вставить изображение
+	$( '#image' ).on( 'mousedown', function() {
+		$('#overlay').toggleClass('overlay');
+		var url = prompt('Введите URL:', 'http://');
+		if (!url || url == '') { url = '#'; $('#overlay').toggleClass('overlay');}
+		else { $('#overlay').toggleClass('overlay'); document.execCommand('InsertImage', false, url); }
+	});
+	// Вставить цитату
+	$( '#blockquote' ).on( 'mousedown', function() {
+		document.execCommand('formatBlock', false, '<blockquote>');
+		//document.execCommand("insertHTML", false, '<blockquote></blockquote>');
+		//document.execCommand("insertHTML", false, '<br>\u200a');
+	});
+	// Размер текста
+	$( '.textsize' ).val('Заголовок 4');
+	$( '.textsize' ).change(function() {
+		if($( this ).val()=='Заголовок 1') {document.execCommand('fontSize', false, '1'); }
+		if($( this ).val()=='Заголовок 2') {document.execCommand('fontSize', false, '2'); }
+		if($( this ).val()=='Заголовок 3') {document.execCommand('fontSize', false, '3'); }
+		if($( this ).val()=='Заголовок 4') {document.execCommand('fontSize', false, '4'); }
+		if($( this ).val()=='Заголовок 5') {document.execCommand('fontSize', false, '5'); }
+		if($( this ).val()=='Заголовок 6') {document.execCommand('fontSize', false, '6'); }
+	});
+	
+	// Удалить форматирование
+	$( '#removeformat' ).on( 'mousedown', function() {
+	   document.execCommand('removeformat');
+	});
+	// Отменить действие
+	$( '#undo' ).on( 'mousedown', function() {
+	   document.execCommand('undo');
+	});
+	// Вернуть действие
+	$( '#redo' ).on( 'mousedown', function() {
+	   document.execCommand('redo');
+	});
+
+// Показывает какие стили были применены
+$('#content').on('mouseover', 'b', function() {  $('.bold').attr("id", "coincident")  });
+$('#content').on('mouseover', 'i', function() {  $('.italic').attr("id", "coincident")  });
+$('#content').on('mouseover', 'u', function() {  $('.underline').attr("id", "coincident")  });
+$('#content').on('mouseover', 'strike', function() {  $('.strike').attr("id", "coincident")  });
+$('#content').on('mouseover', 'div[style="text-align: left;"]', function() {  $('.justifyleft').attr("id", "coincident")  });
+$('#content').on('mouseover', 'div[style="text-align: center;"]', function() {  $('.justifycenter').attr("id", "coincident")  });
+$('#content').on('mouseover', 'div[style="text-align: right;"]', function() {  $('.justifyright').attr("id", "coincident")  });
+$('#content').on('mouseover', 'li', function() {  $('.bulletedlist').attr("id", "coincident")  });
+$('#content').on('mouseover', 'hr', function() {  $('.horizontalrule').attr("id", "coincident")  });
+$('#content').on('mouseover', 'font[color="#fbffff"]', function() {  $('.bgcolor').attr("id", "coincident")  });
+$('#content').on('mouseover', 'a', function() {  $('.link').attr("id", "coincident")  });
+$('#content').on('mouseover', 'img', function() {  $('.image').attr("id", "coincident")  });
+$('#content').on('mouseover', 'blockquote', function() {  $('.blockquote').attr("id", "coincident")  });
+
+$('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
+	
+	
+	
+// .::ФИЛЬТР МАТЕРИАЛА ПРИ ВСТАВКЕ ЕГО В ПОЛЕ ИЗ БУФЕРА ОБМЕНА::.
+
+	document.querySelector("div[contenteditable]").addEventListener("paste", function(e) {
+		e.preventDefault();	
+		var pastetext = e.clipboardData.getData("text/html");
+		// Добавляем промежуточные теги
+		pastetext = pastetext.replace(/<\/div>|<\/p>|<br\/?>/gim, '[br]');
+		pastetext = pastetext.replace(/<b[^>]*>.*?<\/b>/gim, '[b]$&[/b]');
+		pastetext = pastetext.replace(/<i[^>]*>.*?<\/i>/gim, '[i]$&[/i]');
+		pastetext = pastetext.replace(/<u[^>]*>.*?<\/u>/gim, '[u]$&[/u]');
+		pastetext = pastetext.replace(/<strike[^>]*>.*?<\/strike>/gim, '[strike]$&[/strike]');
+		pastetext = pastetext.replace(/<ul[^>]*>.*?<\/ul>/gim, '[ul]$&[/ul]');
+		pastetext = pastetext.replace(/<li[^>]*>.*?<\/li>/gim, '[li]$&[/li]');
+		pastetext = pastetext.replace(/<hr[^>]*>/gm, '[hr]');
+		pastetext = pastetext.replace(/\<span.*?style\s*=\s*["'].*?color\s*:\s*rgb\s*\(\s*74\s*,\s*54\s*,\s*28\s*\)[;"'].*?\>(.*?)\<\/span\>/gim, "[font color='#fbffff']$1[/font]");
+		pastetext = pastetext.replace(/\<font.*?color\s*=\s*["']\s*#fbffff\s*["'].*?>(.*?)\<\/font>/gim, "[font color='#fbffff']$1[/font]");
+		pastetext = pastetext.replace(/\<a.*?(href\s*=\s*["'][^"']*["']).*?\>(.*?)\<\/a\>/gim, '[a $1]$2[/a]');
+		//pastetext = pastetext.replace(/\<img.*?(src\s*=\s*["'][^"']*["']).*?style\s*=\s*["'].*?(text-align\s*:\s*[^;"']*).*?\>/gim, "[img: $1 style='$2']");
+		pastetext = pastetext.replace(/<blockquote[^>]*>.*?<\/blockquote>/gim, '[blockquote]$&[/blockquote]');
+		var temp = document.createElement("div");
+		temp.innerHTML = pastetext;
+		// Меняем промежуточные теги на нормальные
+		temp = temp.textContent;
+		temp = temp.replace(/\[br\]/gim, '<br>');
+		temp = temp.replace(/\[hr\]/gim, '<hr>');
+		temp = temp.replace(/\[b\](.*?)\[\/b\]/gim, '<b>$1</b>');
+		temp = temp.replace(/\[i\](.*?)\[\/i\]/gim, '<i>$1</i>');
+		temp = temp.replace(/\[u\](.*?)\[\/u\]/gim, '<u>$1</u>');
+		temp = temp.replace(/\[strike\](.*?)\[\/strike\]/gim, '<strike>$1</strike>');
+		temp = temp.replace(/\[ul\](.*?)\[\/ul\]/gim, '<ul>$1</ul>');
+		temp = temp.replace(/\[li\](.*?)\[\/li\]/gim, '<li>$1</li>');
+		temp = temp.replace(/\[font color='#fbffff'\](.*?)\[\/font\]/gim, "<font color='#fbffff'>$1</font>");
+		temp = temp.replace(/\[(a.*?)\](.*?)\[\/a\]/gim, '<$1>$2</a>');
+		//temp = temp.replace(/\[(img.*?)\]/gim, '<$1>');
+		temp = temp.replace(/\[blockquote\](.*?)\[\/blockquote\]/gim, '<blockquote>$1</blockquote>');
+		
+		document.execCommand("insertHTML", false, temp);
+	});
+
+	
+	// Заменяем вставку contenteditable &nbsp; на привычный space \u0020
+	$('#content').keypress(function(e){
+		if(e.keyCode == 32){
+			e.preventDefault();
+			document.execCommand('insertHTML', false, '\u0020\u200a');
+		}
+	});
+	// Заменяем вставку contenteditable <div></div> на привычный <br>
+	$('#content').keypress(function(e){
+		if(e.keyCode == 13){
+			e.preventDefault();
+			document.execCommand('insertHTML', false, '<br>\u200a');
+/*
+			var str1 = $('#content').html();
+			str1 = str1.replace(/\<\/blockquote\>\<br\>(\<blockquote\>)?/g, '<br>\u200a');
+			//str1 = str1.replace(/\<br\>\u200a\<br\>\u200a\<\/blockquote\>/g, '<\/blockquote><br>\u200a');
+			$('#content').html(str1);*/
+		}
+	});
+	// Генерирование index.html
+	var savetext;
+	$( '#tooltip' ).on( 'mousedown', function() {
+		savetext = "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'><html><head><meta charset='utf-8' /><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>" + title +"</title><link type='text/css' rel='stylesheet' href='http://ospworkroom.ru/editor/css/style.css' /><script type='text/javascript' src='http://ospworkroom.ru/editor/js/SmoothScroll.js'><\/script></head><body><div class='main'><div id='content'>" + $('textarea').val() + "</div></body></html>";
+		var blob = new Blob([savetext], {type: "text/plain;charset=utf-8;", });
+		saveAs(blob, "index.html");
+	});
+	// Вывод html кода
+		$( 'textarea' ).on( 'click', function() {
+		// удалит пустые теги
+			$('#content *').each(function() {
+				// пропускаем одиночные теги
+				if($(this)[0].tagName != 'BR' && $(this)[0].tagName != 'HR' && $(this)[0].tagName != 'IMG' ){
+					// убираем пробелы
+					var spacetxt = $(this).html().replace(/\s*(&nbsp;)?/gim, '');
+					// проверяем на пустоту
+					if(spacetxt == "") {$(this).remove();}
+				}
+			});
+			
+			var txt = $('#content').html();	
+			var txt = txt.replace(/"/gm, "'");	
+			$(this).val(txt);
+			this.select();
+			// всплывающий блок
+			if (!($(this).val()=="")) {
+			$('#tooltip').css("display", "block"); 
+				setTimeout(function() {
+					$('#tooltip').css({transition:'all 0.9s',transform:' translate(0px,25px) '});
+					$('#tooltip').animate({ "opacity": 1}, 100);
+				}, 1000);
+			}
+			else {$(this).blur()}
+		});
+		$( 'textarea' ).blur(function() { $(this).val("");   $('#tooltip').animate({ "opacity": 0}, 100); $('#tooltip').css({transition:'all 0.5s',transform:' translate(0px,-25px)'}); setTimeout(function() {$('#tooltip').css("display", "none");}, 500);});
+
+	</script>
+	</div>
+	</body>
+</html>
