@@ -13,7 +13,8 @@
 	<link type="text/css" rel="stylesheet" href="css/editor.css" />
 	</head>
 	<body>
-	
+		
+<div class="cssload"></div>	
 <div id="overlay"></div>
 <div id="movediv"></div>
 
@@ -60,6 +61,7 @@
 	var title;
 	$('.main_editor').fadeTo(0,0);
 	$(window).load(function () {
+		$('.cssload').remove();
 		$('.main_editor').fadeTo(1400,1);
 		$('#movediv').slideUp(1400);
 		
