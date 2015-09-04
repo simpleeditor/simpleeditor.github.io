@@ -225,6 +225,7 @@ $('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
 	document.querySelector("div[contenteditable]").addEventListener("paste", function(e) {
 		e.preventDefault();	
 		var pastetext = e.clipboardData.getData("text/html");
+		pastetext = pastetext.replace(/\<div.*?id\s*=\s*["']\s*content\s*["'].*?\>.*?\<\/div\>/gim, "");
 		// Добавляем промежуточные теги
 		pastetext = pastetext.replace(/<\/div>|<\/p>|<br\/?>/gim, '[br]');
 		pastetext = pastetext.replace(/<b[^>]*>.*?<\/b>/gim, '[b]$&[/b]');
@@ -276,13 +277,14 @@ $('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
 			var str1 = $('#content').html();
 			str1 = str1.replace(/\<\/blockquote\>\<br\>(\<blockquote\>)?/g, '<br>\u200a');
 			//str1 = str1.replace(/\<br\>\u200a\<br\>\u200a\<\/blockquote\>/g, '<\/blockquote><br>\u200a');
-			$('#content').html(str1);*/
+			$('#content').html(str1);
+*/
 		}
 	});
 	// Генерирование index.html
-	var savetext;
+	var savetext, txt;
 	$( '#tooltip' ).on( 'mousedown', function() {
-		savetext = "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'><html><head><meta charset='utf-8' /><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>" + title +"</title><link type='text/css' rel='stylesheet' href='http://ospworkroom.ru/editor/css/style.css' /><script type='text/javascript' src='http://ospworkroom.ru/editor/js/SmoothScroll.js'><\/script></head><body><div class='main'><div id='content'>" + $('textarea').val() + "</div></body></html>";
+		savetext = "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'><html><head><meta charset='utf-8' /><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>" + title +"</title><link type='text/css' rel='stylesheet' href='http://simpleeditor.github.io/css/style.css' /><script type='text/javascript' src='http://simpleeditor.github.io/js/SmoothScroll.js'><\/script></head><body><div class='main'><div id='content'>" + txt + "</div></body></html>";
 		var blob = new Blob([savetext], {type: "text/plain;charset=utf-8;", });
 		saveAs(blob, "index.html");
 	});
@@ -301,7 +303,7 @@ $('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
 			
 			var txt = $('#content').html();	
 			var txt = txt.replace(/"/gm, "'");	
-			$(this).val(txt);
+			$(this).val("<!-- Подключаем стили --" + ">\n<link type='text/css' rel='stylesheet' href='http://simpleeditor.github.io/css/style.css' />\n\n" + txt);
 			this.select();
 			// всплывающий блок
 			if (!($(this).val()=="")) {
@@ -311,7 +313,6 @@ $('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
 					$('#tooltip').animate({ "opacity": 1}, 100);
 				}, 1000);
 			}
-			else {$(this).blur()}
 		});
 		$( 'textarea' ).blur(function() { $(this).val("");   $('#tooltip').animate({ "opacity": 0}, 100); $('#tooltip').css({transition:'all 0.5s',transform:' translate(0px,-25px)'}); setTimeout(function() {$('#tooltip').css("display", "none");}, 500);});
 
