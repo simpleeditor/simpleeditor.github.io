@@ -35,9 +35,9 @@ body
 img 
 {
 	position: relative;
-    max-width:100% !important;
-    height: auto;
-    display: block;
+	max-width:100% !important;
+	height: auto;
+	display: block;
 }
 img:before {
 	width: 5000px; 
@@ -51,17 +51,17 @@ img:before {
 
 /*  Оформление скролла */
 ::-webkit-scrollbar {
-    width: 6px;
+	width: 6px;
 }
 ::-webkit-scrollbar-track {
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
 	background: #b8b8a2;
 }
 ::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    background: #6f6f61; 
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	background: #6f6f61; 
 }
 
 
@@ -103,10 +103,10 @@ font[size="6"] {font:10px Georgia; line-height: 1;}
 blockquote
 {
 	width: 75%;
-    position: relative;
+	position: relative;
 	padding: 15px 20px 15px 50px;
 	margin: 20px auto;
-    box-shadow: 0.0em 0.2em 5px rgba(122,122,122,0.5);
+	box-shadow: 0.0em 0.2em 5px rgba(122,122,122,0.5);
 	background: #f3f3f3;
 	border: 1px solid #dfdfdf;
 	border-left: 6px solid grey;
@@ -115,11 +115,11 @@ blockquote
 }
 blockquote:before 
 {
-    display: block;
-    content: url('lenta.png');
+	display: block;
+	content: url('lenta.png');
 	font: 80px Georgia, serif;
-    position: absolute;
-    left: 2px;
-    top: -10px;
-    color: #3d3d3d;
+	position: absolute;
+	left: 2px;
+	top: -10px;
+	color: #3d3d3d;
 }
