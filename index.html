@@ -301,8 +301,8 @@ $('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
 				}
 			});
 			
-			var txt = $('#content').html();	
-			var txt = txt.replace(/"/gm, "'");	
+			txt = $('#content').html();	
+			txt = txt.replace(/"/gm, "'");	
 			$(this).val("<!-- Подключаем стили --" + ">\n<link type='text/css' rel='stylesheet' href='http://simpleeditor.github.io/css/style.css' />\n\n" + txt);
 			this.select();
 			// всплывающий блок
