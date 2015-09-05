@@ -39,7 +39,7 @@ img
 	height: auto;
 	display: block;
 }
-#content img {padding: 6px; background:rgba(255, 255, 255, 0.2); border-radius: 5px;}
+#content img {padding: 8px; background:rgba(255, 255, 255, 0.4); border-radius: 6px;}
 
 
 /*  Оформление скролла */
