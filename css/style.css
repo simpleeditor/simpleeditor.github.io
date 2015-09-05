@@ -39,14 +39,6 @@ img
 	height: auto;
 	display: block;
 }
-img:before {
-	width: 5000px; 
-	height: 500px;
-	margin: auto;
-	display: block; 
-	backgrond-color: black;
-	z-index: 1;
-}
 
 /*  Оформление скролла */
 ::-webkit-scrollbar {
