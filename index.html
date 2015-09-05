@@ -93,7 +93,7 @@
 		var topPos = $('.floating').offset().top;
 		$(window).scroll(function() { 
 			var top = $(document).scrollTop();
-			if (top+200 > topPos) $('.floating').addClass('fixed');
+			if (top > topPos) $('.floating').addClass('fixed');
 			else $('.floating').removeClass('fixed');
 		});
 	});
@@ -156,9 +156,17 @@
 	// Вставить ссылку
 	$( '#link' ).on( 'mousedown', function() {
 		$('#overlay').toggleClass('overlay');
-		var url = prompt('Введите URL:\n______\nЧтобы вставить якорь-ссылку,\n необходимо вместо url ввести (без пробелов): \n\n##ваш_id - имя якоря \n#ваш_id - ссылка на якорь', 'http://');
+		var url = prompt('Введите URL:\n__________\nЧтобы вставить якорь-ссылку,\nнеобходимо вместо url ввести (без пробелов): \n\n##ваш_id - имя якоря \n#ваш_id - ссылка на якорь', 'http://');
 		if (!url || url == '') { url = '#'; $('#overlay').toggleClass('overlay');}
-		else { $('#overlay').toggleClass('overlay'); document.execCommand('CreateLink', null, url); }
+		else { 
+			$('#overlay').toggleClass('overlay'); 
+			document.execCommand('CreateLink', null, url); 
+			setTimeout(function() {
+    				var anchorlink = $('#content').html();
+    				anchorlink = anchorlink.replace(/\<a\s*href\s*=\s*["']##(\w*)["']\>([^\<]*)\<\/a\>/gim, "<a name='$1'>$2</a>");
+    				$('#content').html(anchorlink);
+    }, 10);
+		}
 	});
 	// Удалить ссылку
 	$( '#unlink' ).on( 'mousedown', function() {
