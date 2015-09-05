@@ -61,7 +61,7 @@ img
 
 
 /*  <hr/> */
-hr {width: 90%; height: 0; opacity: 0.7; border-top: 1px solid  #9b9b9b; border-bottom:1px solid   #F4F4F4;}
+hr {width: 90%; height: 0; opacity: 0.6; border-top: 1px solid  #9b9b9b; border-bottom:1px solid   #F4F4F4;}
 
 /*  Позицирование элементов */
 img[style="text-align: center;"] {margin:auto;}
@@ -93,7 +93,7 @@ font[size="6"] {font:10px Georgia; line-height: 1;}
 /* Оформление цитат */
 blockquote
 {
-	width: 75%;
+	width: 80%;
 	position: relative;
 	padding: 15px 20px 15px 50px;
 	margin: 20px auto;
