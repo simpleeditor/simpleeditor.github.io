@@ -156,7 +156,7 @@
 	// Вставить ссылку
 	$( '#link' ).on( 'mousedown', function() {
 		$('#overlay').toggleClass('overlay');
-		var url = prompt('Введите URL:', 'http://');
+		var url = prompt('Введите URL:\n______\nЧтобы вставить якорь-ссылку,\n необходимо вместо url ввести (без пробелов): \n\n##ваш_id - имя якоря \n#ваш_id - ссылка на якорь', 'http://');
 		if (!url || url == '') { url = '#'; $('#overlay').toggleClass('overlay');}
 		else { $('#overlay').toggleClass('overlay'); document.execCommand('CreateLink', null, url); }
 	});
