@@ -45,17 +45,17 @@ img
 	padding: 5px;
 	transition: 0.5s;
 	box-shadow:
-	   -20px 0px 0 -15px rgba(243,241,240, 1),
-	   0px -20px 0 -15px rgba(243,241,240, 1),
-	   20px 0px 0 -15px rgba(243,241,240, 1),
-	   0px 20px 0 -15px rgba(243,241,240, 1);
+	   -20px 0px 0 -15px rgb(240, 238, 236),
+	   0px -20px 0 -15px rgb(240, 238, 236),
+	   20px 0px 0 -15px rgb(240, 238, 236),
+	   0px 20px 0 -15px rgb(240, 238, 236);
 }
 #content img:hover {
    box-shadow:
-	   -20px 0px 0 -15px rgba(243,241,240, 1),
-	   0px -20px 0 -15px rgba(243,241,240, 1),
-	   20px 0px 0 -15px rgba(243,241,240, 1),
-	   0px 20px 0 -15px rgba(243,241,240, 1),
+	   -20px 0px 0 -15px rgb(240, 238, 236),
+	   0px -20px 0 -15px rgb(240, 238, 236),
+	   20px 0px 0 -15px rgb(240, 238, 236),
+	   0px 20px 0 -15px rgb(240, 238, 236),
 	   0 0 0 5px #c27153;
    transition: 0.5s;
 }
