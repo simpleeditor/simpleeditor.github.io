@@ -40,7 +40,25 @@ img
 	height: auto;
 	display: block;
 }
-
+#content img 
+{
+	padding: 5px;
+	transition: 0.5s;
+	box-shadow:
+	   -20px 0px 0 -15px rgba(243,241,240, 1),
+	   0px -20px 0 -15px rgba(243,241,240, 1),
+	   20px 0px 0 -15px rgba(243,241,240, 1),
+	   0px 20px 0 -15px rgba(243,241,240, 1);
+}
+#content img:hover {
+   box-shadow:
+	   -20px 0px 0 -15px rgba(243,241,240, 1),
+	   0px -20px 0 -15px rgba(243,241,240, 1),
+	   20px 0px 0 -15px rgba(243,241,240, 1),
+	   0px 20px 0 -15px rgba(243,241,240, 1),
+	   0 0 0 5px #c27153;
+   transition: 0.5s;
+}
 
 /*  Оформление скролла */
 ::-webkit-scrollbar {
@@ -102,7 +120,7 @@ blockquote
 	background: #f3f3f3;
 	border: 1px solid #dfdfdf;
 	border-left: 6px solid grey;
-	font: 16pt Gentium, sans-serif;
+	font: 16pt Times New Roman, sans-serif;
 	
 }
 blockquote:before 
