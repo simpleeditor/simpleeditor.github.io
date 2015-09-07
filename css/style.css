@@ -116,9 +116,12 @@ blockquote:before
 }
 
 #scrollup {
+	background: url('up.png') no-repeat;
+	width: 65px;
+    	height: 65px;
 	position: fixed;
 	opacity: 0.6;
-	padding: 15px 10px 10px;
+	left: 5px;
 	bottom: 10px;
 	cursor: pointer;
 	z-index: 10;
