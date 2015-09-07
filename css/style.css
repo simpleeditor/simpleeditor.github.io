@@ -121,7 +121,7 @@ blockquote
 	border: 1px solid #dfdfdf;
 	border-left: 6px solid grey;
 	font: 14pt PFAdamantPro, sans-serif;
-	
+	line-height: 1;
 }
 blockquote:before 
 {
