@@ -80,7 +80,7 @@ img
 /*  ОФОРМЛЕНИЕ ТЕГОВ */
 
 /*  <hr> */
-hr {width: 90%; height: 0; opacity: 0.7; border-top: 1px solid  #9b9b9b; border-bottom:1px solid   #F4F4F4;}
+hr {width: 95%; height: 0; opacity: 0.7; border-top: 1px solid  #9b9b9b; border-bottom:1px solid   #F4F4F4;}
 
 /*  Позицирование изображений */
 img[style="text-align: center;"] {margin:auto;}
@@ -120,7 +120,7 @@ blockquote
 	background: #f3f3f3;
 	border: 1px solid #dfdfdf;
 	border-left: 6px solid grey;
-	font: 16pt Times New Roman, sans-serif;
+	font: 16pt Georgia, sans-serif;
 	
 }
 blockquote:before 
