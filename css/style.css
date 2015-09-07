@@ -1,6 +1,6 @@
 @font-face { font-family: Roboto; src: url(Roboto.ttf); }
 @font-face { font-family: Days; src: url(Days.otf); }
-@font-face { font-family: Gentium; src: url(GentiumRegular.ttf); }
+@font-face { font-family: PFAdamantPro; src: url(PFAdamantPro.ttf); }
 
 html, body
 {
@@ -120,7 +120,7 @@ blockquote
 	background: #f3f3f3;
 	border: 1px solid #dfdfdf;
 	border-left: 6px solid grey;
-	font: 16pt Georgia, sans-serif;
+	font: 14pt PFAdamantPro, sans-serif;
 	
 }
 blockquote:before 
