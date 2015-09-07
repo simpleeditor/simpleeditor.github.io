@@ -114,3 +114,12 @@ blockquote:before
 	top: -10px;
 	color: #3d3d3d;
 }
+
+#scrollup {
+	position: fixed;
+	opacity: 0.6;
+	padding: 15px 10px 10px;
+	bottom: 10px;
+	cursor: pointer;
+	z-index: 10;
+}
