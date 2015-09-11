@@ -92,10 +92,10 @@
 			var txtpaste = localStorage.getItem('txt') || '';
 			var datapaste = localStorage.getItem('data');
 			// Восстановление документа или создание нового
-			if (txtpaste.length > 0 && confirm("ВОССТАНОВИТЬ ДОКУМЕНТ ''" + titlepaste + "''?\n\n\nПоследнее редактирование: " + datapaste)) { $('#content').html(txtpaste); titletxt = titlepaste;  $('#overlay').toggleClass('overlay');}
+			if (txtpaste.length > 0 && confirm("Восстановить документ ''" + titlepaste + "''?\n\n__________\nПоследнее редактирование: " + datapaste)) { $('#content').html(txtpaste); titletxt = titlepaste;  $('#overlay').toggleClass('overlay');}
 			else {
 				var titletxt = prompt('Введите заголовок документа: <title>...</title>', '');
-				if (!titletxt || titletxt == '') { titletxt = 'Новая страница'; $('#overlay').toggleClass('overlay');}
+				if (!titletxt || titletxt == '') { titletxt = '...'; $('#overlay').toggleClass('overlay');}
 				else { titletxt = titletxt.replace(/[^a-zA-ZА-Яа-я0-9\s]/g, ''); $('#overlay').toggleClass('overlay');}
 			}
 		}
