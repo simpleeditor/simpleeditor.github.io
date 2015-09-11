@@ -238,6 +238,7 @@ $('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
 		pastetext = pastetext.replace(/\<div.*?id\s*=\s*["']\s*content\s*["'].*?\>.*?\<\/div\>/gim, "");
 		// Добавляем промежуточные теги
 		pastetext = pastetext.replace(/<\/div>|<\/p>|<br\/?>/gim, '[br]');
+	/*	
 		pastetext = pastetext.replace(/<b[^>]*>.*?<\/b>/gim, '[b]$&[/b]');
 		pastetext = pastetext.replace(/<i[^>]*>.*?<\/i>/gim, '[i]$&[/i]');
 		pastetext = pastetext.replace(/<u[^>]*>.*?<\/u>/gim, '[u]$&[/u]');
@@ -250,11 +251,13 @@ $('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
 		pastetext = pastetext.replace(/\<a.*?(href\s*=\s*["'][^"']*["']).*?\>(.*?)\<\/a\>/gim, '[a $1]$2[/a]');
 		//pastetext = pastetext.replace(/\<img.*?(src\s*=\s*["'][^"']*["']).*?style\s*=\s*["'].*?(text-align\s*:\s*[^;"']*).*?\>/gim, "[img: $1 style='$2']");
 		pastetext = pastetext.replace(/<blockquote[^>]*>.*?<\/blockquote>/gim, '[blockquote]$&[/blockquote]');
+	*/
 		var temp = document.createElement("div");
 		temp.innerHTML = pastetext;
 		// Меняем промежуточные теги на нормальные
 		temp = temp.textContent;
 		temp = temp.replace(/\[br\]/gim, '<br>');
+	/*
 		temp = temp.replace(/\[hr\]/gim, '<hr>');
 		temp = temp.replace(/\[b\](.*?)\[\/b\]/gim, '<b>$1</b>');
 		temp = temp.replace(/\[i\](.*?)\[\/i\]/gim, '<i>$1</i>');
@@ -266,7 +269,7 @@ $('#content').on('mouseout', function() {  $('.icon div').removeAttr("id")  });
 		temp = temp.replace(/\[(a.*?)\](.*?)\[\/a\]/gim, '<$1>$2</a>');
 		//temp = temp.replace(/\[(img.*?)\]/gim, '<$1>');
 		temp = temp.replace(/\[blockquote\](.*?)\[\/blockquote\]/gim, '<blockquote>$1</blockquote>');
-		
+	*/	
 		document.execCommand("insertHTML", false, temp);
 	});
 
