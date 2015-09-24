@@ -37,9 +37,10 @@ body
 img 
 {
 	position: relative;
-	max-width:95% !important;
+	max-width:100% !important;
 	height: auto;
 	display: block;
+	padding: 5%;
 }
 
 
