@@ -12,8 +12,9 @@ body
 	background-image:url(http://365psd.ru/images/backgrounds/exclusive_paper.png);
 	font: 16pt Verdana, sans-serif;
 	color: #444444;
-	line-height: 1.1;
+	line-height: 1.4;
 	-webkit-text-size-adjust: none;
+	text-align: justify;
 	position: relative;
 }
 .main
